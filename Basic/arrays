@@ -1,7 +1,7 @@
 #include<iostream>
 #include<climits>
 using namespace std;
-//                                                                                 ARRAYS ALL PROGRAMS
+//Things i did with arrays
 int min(int arr[], int size){//       to find the smallest element in array
         int min = INT_MAX;
         for(int i=0; i<size; i++){
