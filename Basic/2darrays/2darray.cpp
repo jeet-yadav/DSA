@@ -38,6 +38,23 @@ void rowWiseSum(int arr[][3], int row, int col){
     }
 }
 
+void largestRowSum(int arr[][3], int row, int col){
+    int max = 0;
+    int rowindex = -1;
+    int sum = 0;
+    for(int i=0; i<row; i++){
+        for(int j=0; j<col; j++){
+            sum += arr[i][j];
+        }
+        if(sum > max){
+            max = sum;
+            rowindex = i;
+        }
+        sum = 0;
+    }
+    cout<<"largest row-sum is : "<<max<<", index at : "<<rowindex;
+}
+
 int main(){
     int arr[3][3];
     int arr2[3][3] = {{1,11,111}, {2,22,222}, {3,33,333}};//Hardcode
@@ -55,5 +72,6 @@ int main(){
     search(arr, 3, 3, target);
     print(arr,3,3);
     rowWiseSum(arr,3,3);
+    largestRowSum(arr, 3, 3);
     return 0;
 }
