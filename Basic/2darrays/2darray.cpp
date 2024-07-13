@@ -25,6 +25,9 @@ void search(int arr[][3], int row, int col, int target){//              to searc
         cout<<"Element not found :("<<endl;
     }
 }
+void rowWiseSum(int arr[][3], int row, int col){
+    
+}
 int main(){
     int arr[3][3];
     int arr2[3][3] = {{1,11,111}, {2,22,222}, {3,33,333}};//Hardcode
