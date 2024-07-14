@@ -8,7 +8,7 @@ int main(){
     cout<<"enter number of columns : ";
     cin>>m;
     int arr[n][m];
-    cout<<"Enter elements row-wise for a nxm array: ";
+    cout<<"Enter elements : ";
 
     for(int i=0; i<n; i++){
         for(int j=0; j<m; j++){
@@ -16,7 +16,7 @@ int main(){
         }
     }
 
-    cout<<"printing array......"<<endl;;
+    cout<<"printing array......"<<endl;
     for(int i=0; i<n; i++){
         for(int j=0; j<m; j++){
             cout<<arr[i][j];
@@ -24,6 +24,7 @@ int main(){
         }
         cout<<endl;
     }
+    cout<<endl;
     int row = n;//total number of rows
     int col = m;//total number of columns
 
@@ -38,29 +39,29 @@ int main(){
 
     while(count<total){
         //starting Row
-        for(int i = startingCol; i<endingCol; i++){
+        for(int i = startingCol; i<=endingCol && count < total; i++){
             cout<<arr[startingRow][i]<<" ";
             count++;
         }
         startingRow++;
 
         //ending column
-        for(int i = startingRow; i<endingRow; i++){
-            cout<<arr[i][endingCol];
+        for(int i = startingRow; i<=endingRow && count < total; i++){
+            cout<<arr[i][endingCol]<<" ";
             count++;
         }
         endingCol--;
 
         //ending row
-        for(int i=endingCol; i>=startingCol; i--){
-            cout<<arr[endingRow][i];
+        for(int i=endingCol; i>=startingCol && count < total; i--){
+            cout<<arr[endingRow][i]<<" ";
             count++;
         }
         endingRow--;
 
         //starting column
-        for(int i=endingRow; i>=startingRow; i--){
-            cout<<arr[i][startingCol];
+        for(int i=endingRow; i>=startingRow && count < total; i--){
+            cout<<arr[i][startingCol]<<" ";
             count++;
         }
         startingCol++;
