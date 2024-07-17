@@ -4,21 +4,24 @@ using namespace std;
 
 int prime(int n){
     if(n<2){
-        cout<<"obviously not prime";
         return 0;
     }
     for(int i=2; i<=sqrt(n); i++){
         if(n%i==0){
-            cout<<"non prime";
             return 0;
         }
     }
-    cout<<"the prime";
+    return 1;
 }
 
 int main(){
-    int n;
+    int n, count = 0;
     cin>>n;
-    prime(n);
+    for(int i=0; i<n; i++){
+        if(prime(i)==1){
+            count++;
+        }
+    }
+    cout<<count;
     return 0;
 }
