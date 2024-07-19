@@ -10,7 +10,7 @@ int print(int arr[][3], int row, int col){// print an 2D-array
         cout<<endl;
     }
 }
-void search(int arr[][3], int row, int col, int target){//              to search an element in an 2D array(it will be easy if maid using bool function)
+void search(int arr[][3], int row, int col, int target){//              to search an element in an 2D array(it will be easy if made using bool function)
     bool found = false;
     for(int i=0; i<row; i++){
         for(int j=0; j<col; j++){
