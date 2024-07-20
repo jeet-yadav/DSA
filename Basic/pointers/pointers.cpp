@@ -37,6 +37,20 @@ int main(){
     // cout<< &arr[0] <<endl;
     // cout<< arr <<endl;
 
+
+    char ch[6] = "abcde";
+    // cout << ch <<endl;
+    // cout << &ch <<endl;
+    // cout << *ch <<endl;
+    // cout << *(ch+1)+2 <<endl;
+
+    // char *c = &ch[0];
+    // cout << c <<endl;
+    // cout << *c <<endl;
     
+    // char temp = 'z';
+    // char *tp = &temp;
+    // cout<<tp<<endl;
+    // cout<<&temp<<endl;
     return 0;
 }  
