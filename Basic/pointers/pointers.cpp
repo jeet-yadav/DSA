@@ -1,5 +1,25 @@
 #include<iostream>
 using namespace std;
+
+void print(int *p){
+    *p = *p + 1;
+    cout <<"inside func "<<*p <<endl;
+    p = p + 1;
+    cout<<"inside func "<<p <<endl;
+}
+
+
+int getSum(int arr[], int n){// here ind=stead of arr[], we can use *arr
+    cout<<sizeof(arr)<<endl;
+    cout<<&arr<<endl;
+    cout<<&arr[0]<<endl;
+    int sum = 0;
+    for(int i=0; i<n; i++){
+        sum += arr[i];
+    }
+    return sum;
+}
+
 int main(){
     // int num = 5;
     // cout<<"num is "<<num<<endl;
@@ -17,7 +37,7 @@ int main(){
     // (*p)*=2;
     // cout<<"num after *p++ is "<<num<<endl;
 
-    // int arr[5] = {5,10,15,20,25};
+    int arr[5] = {5,10,15,20,25};
     // cout<<"address of arr[0] is "<< arr <<endl;
     // cout<<"address of arr[0] is "<< &arr[0] <<endl;
     // cout<<"value at address of arr[0] is "<< *arr <<endl;
@@ -52,5 +72,16 @@ int main(){
     // char *tp = &temp;
     // cout<<tp<<endl;
     // cout<<&temp<<endl;
+
+
+    // int value = 5;
+    // int *p = &value;
+    // cout <<"before "<<*p <<endl;
+    // cout<<"before "<<p <<endl;
+    // print(p);
+    // cout <<"after "<<*p <<endl;
+    // cout<<"after "<<p <<endl;
+    // cout<<sizeof(arr)<<endl;
+    // cout << "Sum is " << getSum(arr,5) << endl;
     return 0;
 }  
