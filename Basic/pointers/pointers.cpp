@@ -82,6 +82,6 @@ int main(){
     // cout <<"after "<<*p <<endl;
     // cout<<"after "<<p <<endl;
     // cout<<sizeof(arr)<<endl;
-    // cout << "Sum is " << getSum(arr,5) << endl;
+    // cout << "Sum is " << getSum(arr+1,5) << endl;
     return 0;
 }  
