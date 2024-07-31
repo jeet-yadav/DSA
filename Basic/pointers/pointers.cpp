@@ -9,16 +9,16 @@ void print(int *p){
 }
 
 
-int getSum(int arr[], int n){// here ind=stead of arr[], we can use *arr
-    cout<<sizeof(arr)<<endl;
-    cout<<&arr<<endl;
-    cout<<&arr[0]<<endl;
-    int sum = 0;
-    for(int i=0; i<n; i++){
-        sum += arr[i];
-    }
-    return sum;
-}
+// int getSum(int arr[], int n){// here ind=stead of arr[], we can use *arr
+//     cout<<sizeof(arr)<<endl;
+//     cout<<&arr<<endl;
+//     cout<<&arr[0]<<endl;
+//     int sum = 0;
+//     for(int i=0; i<n; i++){
+//         sum += arr[i];
+//     }
+//     return sum;
+// }
 
 int main(){
     // int num = 5;
@@ -55,8 +55,6 @@ int main(){
     // cout<< arr <<endl;
     // cout<< &arr <<endl;
     // cout<< &arr[0] <<endl;
-    // cout<< arr <<endl;
-
 
     char ch[6] = "abcde";
     // cout << ch <<endl;
