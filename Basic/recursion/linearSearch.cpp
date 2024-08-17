@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int search(int arr[],int n,int key){//linear search using recursion
+bool search(int arr[],int n,int key){//linear search using recursion
     if(n == 0){
         return 0;
     }
