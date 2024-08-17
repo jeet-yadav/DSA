@@ -15,12 +15,20 @@ void reverseString(string& name, int s, int e){//reversing an array using recurs
     reverseString(name,s,e);
 }
 
+void optimized(string& name, int s, int n){//reversing an array using recursion
+    if(s >= n/2)
+        return;
+    swap(name[s], name[n-s-1]);
+    optimized(name,s+1,n);
+}
+
 int main(){
     char arr[4] = {'j','e','i','t'};
-    string name = "jeit";
+    
+    string name = "abcde";
+    int n = name.length();
 
-    reverse(arr,0,3);
-    reverseString(name,0,name.length()-1);
+    optimized(name,0,n);
     cout<<name<<endl;
     return 0;
 }
