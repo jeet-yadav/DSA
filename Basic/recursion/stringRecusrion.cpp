@@ -8,12 +8,19 @@ void reverse(char arr[], int s, int e){//reversing an array using recursion
     reverse(arr,s,e);
 }
 
+void reverseString(string& name, int s, int e){//reversing an array using recursion
+    if(s>=e)
+        return;
+    swap(name[s++], name[e--]);
+    reverseString(name,s,e);
+}
+
 int main(){
     char arr[4] = {'j','e','i','t'};
-    reverse(arr,0,3);
+    string name = "jeit";
 
-    for (int i = 0; i < 4; i++) {
-        cout << arr[i] << " ";
-    }
+    reverse(arr,0,3);
+    reverseString(name,0,name.length()-1);
+    cout<<name<<endl;
     return 0;
 }
