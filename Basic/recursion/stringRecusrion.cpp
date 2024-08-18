@@ -15,6 +15,7 @@ void reverseString(string& name, int s, int e){//reversing an array using recurs
     reverseString(name,s,e);
 }
 
+//new approach can use 1 pointer, and alter it by size of array to be as second pointer
 void optimized(string& name, int s, int n){//reversing an array using recursion
     if(s >= n/2)
         return;
