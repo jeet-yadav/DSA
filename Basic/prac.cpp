@@ -1,49 +1,63 @@
 #include<iostream>
 using namespace std;
 
-int print(int arr[][3], int row, int col){// print an 2D-array
-    cout<<"printing array......"<<endl;;
-    for(int i=0; i<row; i++){
-        for(int j=0; j<col; j++){
-            cout<<arr[i][j];
-            cout<<" ";
-        }
-        cout<<endl;
+bool check(int arr[], int n, int i){// my logic is easy HAHAHAHAHAH
+    if(n == 1)
+        return true;
+    if(arr[i] > arr[i+1])//but for the last element it is checking element outside the array
+        return false;
+    check(arr,n-1,i+1);
+}
+
+bool babbarCheck(int arr[], int n, int index){
+    if(index >= n)
+        return true;
+    if(arr[index] > arr[index-1])
+        return babbarCheck(arr,n,index+1);
+    return false;
+}
+
+bool binaryRecursion(int arr[], int s, int e, int key){
+    if(s>e)
+        return 0;
+
+    int mid = s+(e-s)/2;
+    if(arr[mid] == key)
+        return 1;
+
+    if(key > arr[mid]){
+        return binaryRecursion(arr,mid+1,e,key);
+    }
+    else{
+        return binaryRecursion(arr,s,mid-1,key);
     }
 }
 
-int rotate(int arr[][3], int row, int col){// using swaping to rotate an matrix( first transpose it/swap adjecent elements then swap adjecent columns)
-    for(int i=1; i<row; i++){
-        for(int j=i; j<col-1; j++){
-            swap(arr[row][col], arr[col][row]);
-        }
+int subsequence(string str, string output, int index){
+    if(index >= str.length()){
+        cout<<output<<endl;
+        return 1;
     }
+    char ch = str[index];
 
-    for (int i=0; i<row; i++) {
-        for (int j=0; j<col/2; j++) {
-            swap(arr[i][j], arr[i][col-j-1]);
-        }
-    }
-    print(arr, row, col);
-}
+    output.push_back(ch);
+    subsequence(str,output,index+1);
 
-int rotate2(int arr[][3], int row, int col){// eassypeassy
-    for(int i=0; i<col; i++){
-        for(int j=row-1; j>=0; j--){
-            cout<<arr[j][i]<<" ";
-        }
-        cout<<endl;
-    }
+    output.pop_back();
+    subsequence(str,output,index+1);
+
+    // subsequence(str,output,index+1);
+
+    // output.push_back(ch);
+    // subsequence(str,output,index+1);
 }
 
 int main(){
-    int arr[3][3] = {
-        {1,2,3},
-        {4,5,6},
-        {7,8,9}
-    };
-    // print(arr, 3, 3);
-    rotate2(arr, 3, 3);
-
+    int arr[5] = {1,2,3,4,5};
+    int arr2[1] = {1};
+    cout<<check(arr2,5,0)<<endl;
+    cout<<babbarCheck(arr2,1,1)<<endl;
+    cout<<binaryRecursion(arr,0,4,5)<<endl;
+    cout<<subsequence("abc"," ",0)<<endl;
     return 0;
 }
