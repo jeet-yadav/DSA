@@ -16,7 +16,7 @@ int findSubsequences(string str, string output, int index){
 }
 
 int main(){
-    string str = "abc";
+    string str = "xy";
     findSubsequences(str,"",0);
     return 0;
 }

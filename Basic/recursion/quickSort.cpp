@@ -1,53 +1,55 @@
 #include<iostream>
 using namespace std;
-void merge(int arr[], int s, int e){
-    int mid = s+(e-s)/2;
 
-    int len1 = mid-s+1;
-    int len2 = e-mid;
+int partition(int arr[], int s, int e){
+    int pivot = arr[s];
+    int cnt = 0;
 
-    int arr1[len1];
-    int arr2[len2];
-
-    int k = s;
-    for(int i=0; i<len1; i++){
-        arr1[i] = arr[k++];
-    }
-    
-    k = mid+1;
-    for(int i=0; i<len2; i++){
-        arr2[i] = arr[k++];
-    }
-    int i = 0, j = 0;
-    k = s;
-    while(i < len1 && j < len2){
-        if(arr1[i] < arr2[j]){
-            arr[k++] = arr1[i];
-        }
-        if(arr1[i] > arr2[j]){
-            arr[k++] = arr2[j++];
+    for(int i=s+1; i<=e; i++){
+        if(arr[i] <= pivot){
+            cnt++;
         }
     }
-    while(i < len1){
-        arr[k++] = arr1[i++];
+
+    int pivotIndex = s + cnt;
+    swap(arr[pivotIndex], arr[s]);
+
+    int i = s, j = e;
+    while(i < pivotIndex && j > pivotIndex){
+        while(arr[i] < pivot){
+            i++;
+        }
+        while(pivot < arr[j]){
+            j--;
+        }
+        if(i < pivotIndex && j > pivotIndex){
+            swap(arr[i++], arr[j--]);
+        }
     }
-    while(i < len2){
-        arr[k++] = arr2[j++];
-    }
+    return pivotIndex;
 }
-void mergeSort(int arr[], int s, int e){
+
+void quickSort(int arr[], int s, int e){
     if(s>=e){
         return;
     }
-    int mid = s+(e-s)/2;
-    mergeSort(arr,s,mid);
-    mergeSort(arr,mid+1,e);
-    merge(arr,s,e);
+
+    int p = partition(arr,s,e); 
+
+    quickSort(arr,s,p);
+    quickSort(arr,p+1,e);
 }
+
 int main(){
-    int arr[5] = {5,4,3,2,1};
-    mergeSort(arr,0,4);
-    for(int i=0; i<5; i++){
+    int arr[10] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+
+    for(int i=0; i<10; i++){
+        cout<<arr[i]<<" ";
+    }cout<<endl;
+
+    quickSort(arr,0,9);
+
+    for(int i=0; i<10; i++){
         cout<<arr[i]<<" ";
     }
     return 0;
