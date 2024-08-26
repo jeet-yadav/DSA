@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-
+// https://leetcode.com/problems/subsets/
 void subSet(vector<int>& arr, vector<vector<int>>& arr2, int index, vector<int>& output){
     if(index >= arr.size()){
         arr2.push_back(output);
