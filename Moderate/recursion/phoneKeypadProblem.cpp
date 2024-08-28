@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 // https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
@@ -6,11 +7,10 @@ using namespace std;
 // int main(){ 
 //     string mainStr = "23";
 //     string strMap[] = {"", "","abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    
 //     int index = 0;
-//     int d1 = mainStr[index] - '0';
-//     int d2 = mainStr[index+1] - '0';
-        
+//     int d1 = mainStr[index++] - '0';
+//     int d2 = mainStr[index] - '0';
+                                   
 //     string str1 = strMap[d1];
 //     string str2 = strMap[d2];
 
@@ -51,16 +51,31 @@ using namespace std;
 //     }
 // };
 
-void combi(string str, string Map[], int index, string ans){
-    
+
+//using recursion
+void solve(string digits, string map[], int index, vector<string>& ans, string output){
+    if(index >= digits.length()){
+        ans.push_back(output);
+        return;
+    }
+    int n = digits[index] - '0';
+    string str = map[n];
+    for(int i=0; i<str.length(); i++){
+        output.push_back(str[i]);
+        solve(digits,map,index+1,ans,output);
+        output.pop_back();
+    }
 }
 
 int main(){
-    string str = "23";
+    string digits = "23";
     string output;
-    string ans;
-    string Map[] = {"", "","abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<string> ans;
+    string map[] = {"", "","abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     int index = 0;
-    combi(str,Map,index,ans);
+    solve(digits,map,index,ans,output);
+    for(int i=0; i<ans.size(); i++){
+        cout<<ans[i]<<" ";
+    }
     return 0;
 }
