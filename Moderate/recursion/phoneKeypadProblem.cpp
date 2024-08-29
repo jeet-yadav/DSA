@@ -46,7 +46,7 @@ using namespace std;
 //             }
 //             result.swap(temp);
 //         }
-
+ 
 //         return result;
 //     }
 // };
@@ -61,7 +61,7 @@ void solve(string digits, string map[], int index, vector<string>& ans, string o
     int n = digits[index] - '0';
     string str = map[n];
     for(int i=0; i<str.length(); i++){
-        output.push_back(str[i]);
+        output.push_back(str[i]); 
         solve(digits,map,index+1,ans,output);
         output.pop_back();
     }
