@@ -1,5 +1,5 @@
 #include<iostream>
-#include<cstring>
+#include<cstring>//fuck warnings
 using namespace std;
 
 class Hero{
@@ -56,6 +56,12 @@ class Hero{
         cout <<"level: " << this->level << " ]";
         cout << endl << endl;
     }
+
+    // Destructor XDDD
+    ~Hero(){
+        cout<<"Destructor called"<<endl;
+        delete[] name;
+    }
 };
 
 int main(){
@@ -70,5 +76,6 @@ int main(){
     h2.print();
 
     Hero h3 = h1;// Assignment operator, Shallow copy
+    Hero *p = new Hero();// Dynamic memory allocation
     return 0;
 }
