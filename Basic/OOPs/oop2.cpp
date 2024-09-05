@@ -9,6 +9,12 @@ class Hero{
     public:
     char *name;
     char level;
+    static int timeToComplete;// Static variable, without creating any object we can access it
+
+    static int random(){// Static function, can only access static variable
+        cout<<"random function called"<<endl;
+        return timeToComplete;
+    }
 
     Hero(){
         cout<<"default constructor called"<<endl;
@@ -57,12 +63,15 @@ class Hero{
         cout << endl << endl;
     }
 
+    // Destructors are automatically created but for object made in heap memory(dynamic memory allocation) manually creating destructors is required
     // Destructor XDDD
     ~Hero(){
         cout<<"Destructor called"<<endl;
         delete[] name;
     }
 };
+
+int Hero::timeToComplete = 5;
 
 int main(){
     Hero h1(89,'S');
@@ -77,5 +86,7 @@ int main(){
 
     Hero h3 = h1;// Assignment operator, Shallow copy
     Hero *p = new Hero();// Dynamic memory allocation
+
+    cout<<"Time to complete -> "<<Hero::timeToComplete<<endl;
     return 0;
 }
