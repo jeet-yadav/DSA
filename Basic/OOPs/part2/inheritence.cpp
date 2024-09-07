@@ -3,22 +3,24 @@ using namespace std;
 
 class Human{
 
-    private:
+    private://cannot be inherited 
     int type;
+
+    protected://can be inherited
+    int weight;
 
     public:
     int height;
-    int weight;
     int age;
 
     public:
     int getAge(){
         return this -> age;
     }
-    void setWeight(int w){
+    void setWeight(int w){// setter
         this -> weight = w;
     }
-    int getWeight(){
+    int getWeight(){// getter
         return weight;
     }
 };
@@ -36,9 +38,10 @@ class Male: public Human{
 int main(){
     Male m1;
     m1.height = 189;
-    cout<<m1.height<<endl;
-    m1.sleep();
+    m1.age = 20;
     m1.setWeight(70);
-    cout<<m1.getWeight()<<endl;
+    cout<<"height "<<m1.height<<endl;
+    cout<<"age "<<m1.age<<endl;
+    cout<<"weight "<<m1.getWeight()<<endl;
     return 0;
 }
