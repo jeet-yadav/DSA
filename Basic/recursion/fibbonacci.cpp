@@ -13,7 +13,7 @@ int fibbo(int n){//has higher complexity
 }
 
 int main(){
-    int n = 10;
+    int n = 4;
     int a = fibbo(n);
     cout<<a<<endl;
 

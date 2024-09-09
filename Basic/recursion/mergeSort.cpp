@@ -4,7 +4,7 @@ using namespace std;
 void copyMerge(int arr[], int s, int e){
     int mid = (s+e)/2;
 
-    int len1 = mid-s+1;
+    int len1 = mid-s+1;// also can be said as mid-(s-1), i guess
     int len2 = e - mid;
 
     int *first = new int[len1];

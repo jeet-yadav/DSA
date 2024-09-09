@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-bool palindrome(string str, int s, int n){
+bool palindrome(string str, int s, int n){//s is first index, and n is length of string
     if(s > n/2)
         return true;
     if(str[s] != str[n-s-1]){
