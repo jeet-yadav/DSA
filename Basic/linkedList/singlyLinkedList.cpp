@@ -67,7 +67,7 @@ void insertPosition(Node* &head, Node* &tail, int position, int d){
 }
 
 void deleteNode(Node* &head, Node* &tail, int position){
-    //deleting fisrt node
+    //deleting first node
     if(position == 1){
         Node* temp = head;
         head = head -> next;//pointing head to next node

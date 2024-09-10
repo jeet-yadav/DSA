@@ -13,6 +13,16 @@ class Node {
         this -> next = NULL;
         this -> prev = NULL;
     }
+
+    //destructor
+    ~Node(){
+        int value = this -> data;
+        if(this -> next != NULL){
+            delete next;
+            this -> next = NULL;
+        }
+        cout<<"Memory freed for : "<<value<<endl;
+    }
 };
 
 // Inserting new node at front
@@ -22,6 +32,7 @@ void insertHead(Node* &head, Node* &tail, int d){
         Node* temp = new Node(d);
         head = temp;
         tail = temp;
+        return;
     }
     Node* temp = new Node(d);
     temp -> next = head;
@@ -36,6 +47,7 @@ void insertTail(Node* &head, Node* &tail, int d){
         Node* temp = new Node(d);
         head = temp;
         tail = temp;
+        return;
     }
     Node* temp = new Node(d);
     tail -> next = temp;
@@ -71,6 +83,39 @@ void insertPosition(Node* &head, Node* &tail, int position, int d){
     temp -> next -> prev = newNode;
     temp -> next = newNode;
     newNode -> prev = temp;
+}
+
+void deleteNode(Node* &head, Node* &tail, int position){
+    //deleting first node
+    if(position == 1){
+        head -> next -> prev = NULL;
+        Node* temp = head;
+        head = head -> next;//pointing head to next node
+        temp -> next = NULL;
+        delete temp;//deleting previous head
+    }
+    else{
+        //deleting element in middle
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position){
+            prev = curr;
+            curr = curr -> next;
+            cnt++;
+        }
+        cout<<"Deleting "<<curr -> data<<endl;
+
+        curr -> prev = NULL;
+        prev -> next = curr -> next;
+        curr -> next = NULL;
+        delete curr;
+        if(prev -> next == NULL){
+            tail = prev;
+        }
+    }
+
 }
 
 // Traversing in Linked list
@@ -110,6 +155,10 @@ int main(){
     cout<<"Head : "<<head -> data<<endl;
     cout<<"Tail : "<<tail -> data<<endl;
     insertPosition(head,tail,6,69);
+    print(head);
+    cout<<"Head : "<<head -> data<<endl;
+    cout<<"Tail : "<<tail -> data<<endl;
+    deleteNode(head,tail,);
     print(head);
     cout<<"Head : "<<head -> data<<endl;
     cout<<"Tail : "<<tail -> data<<endl;
