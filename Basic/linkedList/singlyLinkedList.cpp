@@ -5,22 +5,58 @@ class Node{
     
     public:
     int data;
-    Node *next;
+    Node *next;// Pointer to next node
 
-    Node(int data){
+    Node(int data){//setter
         this -> data = data;
         this -> next = NULL;
     }
 };
 
-void insert(Node* &head, int d){
-    Node* temp = new Node(d);
-    temp -> next = head;
-    head = temp;
+//inserting element at front
+void insertHead(Node* &head, int d){
+    Node* temp = new Node(d);//create new node ant put data in it
+    temp -> next = head;//new node's next will point to where head is pointing,(left most node)
+    head = temp;//head will point to new element
+}
+
+//inserting element at the end
+void insertTail(Node* &tail, int d){
+    Node* temp = new Node(d);//create new element and put data in it
+    tail -> next = temp;//In tail's next put temp,(new element address)
+    tail = temp;//Increment tail to new element, as new element is tail now
+}
+
+//inserting element in between
+void insertPosition(Node* &head, Node* &tail, int position, int d){
+    if(position == 1){
+        insertHead(head, d);
+        return;
+    }
+
+    Node* temp = head;
+    int cnt = 1;
+
+    while(cnt < position - 1){
+        temp = temp -> next;
+        cnt++;
+    }
+    // if(temp -> next == NULL){
+    //     insertTail(tail,d);
+    //     return;
+    // }
+    Node* nodeToInsert = new Node(d);
+    nodeToInsert -> next = temp -> next;
+    temp -> next = nodeToInsert;
+    
+    //this code can also be used instead of code commented above 
+    if(nodeToInsert -> next == NULL){
+        tail = nodeToInsert;
+    }
 }
 
 void print(Node* &head){
-    Node* &temp = head;
+    Node* temp = head;
 
     while(temp != NULL){
         cout<<temp -> data<<" ";
@@ -32,7 +68,13 @@ void print(Node* &head){
 int main(){
     Node* node1 = new Node(5);
     Node* head = node1;
-    insert(head, 6);
+    Node* tail = node1;
+
+    insertTail(tail, 7);
+    insertTail(tail, 8);
+    insertPosition(head,tail,4,6);
     print(head);
+    cout<<"Head : "<<head -> data<<endl;
+    cout<<"Tail : "<<tail -> data<<endl;
     return 0;
 }
