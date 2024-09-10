@@ -16,11 +16,12 @@ class Node {
 };
 
 // Inserting new node at front
-void insertHead(Node* &head, int d){
+void insertHead(Node* &head, Node* &tail, int d){
     //for creating first node, but we already created the first node in main function
     if(head == NULL){
         Node* temp = new Node(d);
         head = temp;
+        tail = temp;
     }
     Node* temp = new Node(d);
     temp -> next = head;
@@ -29,10 +30,11 @@ void insertHead(Node* &head, int d){
 }
 
 // Insertion at the end
-void insertTail(Node* &tail, int d){
+void insertTail(Node* &head, Node* &tail, int d){
     //for creating first node, but we already created the first node in main function
     if(tail == NULL){
         Node* temp = new Node(d);
+        head = temp;
         tail = temp;
     }
     Node* temp = new Node(d);
@@ -46,7 +48,7 @@ void insertTail(Node* &tail, int d){
 void insertPosition(Node* &head, Node* &tail, int position, int d){
     //for inserting in first position
     if(position == 1){
-        insertHead(head,d);
+        insertHead(head,tail,d);
         return;
     }
 
@@ -60,7 +62,7 @@ void insertPosition(Node* &head, Node* &tail, int position, int d){
 
     //if inserting in last position
     if(temp -> next == NULL){
-        insertTail(tail,d);
+        insertTail(head,tail,d);
         return;
     }
 
@@ -100,10 +102,10 @@ int main(){
     Node* tail = node1;
     print(head);
     getLength(head);
-    insertHead(head,1);
-    insertHead(head,2);
-    insertHead(head,3);
-    insertTail(tail,6);
+    insertHead(head,tail,1);
+    insertHead(head,tail,2);
+    insertHead(head,tail,3);
+    insertTail(head,tail,6);
     print(head);
     cout<<"Head : "<<head -> data<<endl;
     cout<<"Tail : "<<tail -> data<<endl;
