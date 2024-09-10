@@ -7,9 +7,20 @@ class Node{
     int data;
     Node *next;// Pointer to next node
 
-    Node(int data){//setter
+    //constructor
+    Node(int data){
         this -> data = data;
         this -> next = NULL;
+    }
+
+    //destructor
+    ~Node(){
+        int value = this -> data;
+        if(this -> next != NULL){
+            delete next;
+            this -> next = NULL;
+        }
+        cout<<"Memory freed for : "<<value<<endl;
     }
 };
 
@@ -55,9 +66,37 @@ void insertPosition(Node* &head, Node* &tail, int position, int d){
     }
 }
 
+void deleteNode(Node* &head, int position){
+    //deleting fisrt node
+    if(position == 1){
+        Node* temp = head;
+        head = head -> next;//pointing head to next node
+        temp -> next = NULL;
+        delete temp;//deleting previous head
+    }
+    else{
+        //deleting element in middle
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position){
+            prev = curr;
+            curr = curr -> next;
+            cnt++;
+        }
+        cout<<"Deleting "<<curr -> data<<endl;
+        prev -> next = curr -> next;
+        curr -> next = NULL;
+        delete curr;
+    }
+
+}
+
 void print(Node* &head){
     Node* temp = head;
 
+    cout<<"Linked-List : ";
     while(temp != NULL){
         cout<<temp -> data<<" ";
         temp = temp -> next;
@@ -76,5 +115,7 @@ int main(){
     print(head);
     cout<<"Head : "<<head -> data<<endl;
     cout<<"Tail : "<<tail -> data<<endl;
+    deleteNode(head,2);
+    print(head);
     return 0;
 }
