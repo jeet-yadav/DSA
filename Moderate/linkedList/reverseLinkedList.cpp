@@ -47,6 +47,20 @@ void reverse(Node* &head){
     head = prev;
 }
 
+void reverseRecursion(Node* &head,Node* prev,Node* &curr,Node* &forward){
+    if(curr == NULL){
+        head = prev;
+        return;
+    }
+
+    forward = curr -> next;
+    curr -> next = prev;
+    prev = curr;
+    curr = forward;
+
+    reverseRecursion(head,prev,curr,forward);
+}
+
 int main(){
     Node* node1 = new Node(1);
     Node* head = node1;
@@ -55,7 +69,12 @@ int main(){
         insert(head, i);
     }
     print(head);
-    reverse(head);
+    // reverse(head);
+
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* forward = NULL;
+    reverseRecursion(head,prev,curr,forward);
     print(head);
     return 0;
 }
