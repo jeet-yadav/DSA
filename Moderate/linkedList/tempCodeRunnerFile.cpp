@@ -1,10 +1,9 @@
-void reverseRecursion(Node* &head,Node* prev,Node* &curr,Node* &forward){
-//     if(curr == NULL){
-//         head = prev;
+void advanceRecursion2(Node* &head){// by babbar
+//     if(head == NULL || head -> next == NULL){
 //         return;
 //     }
-
-//     forward = curr -> next;
-//     curr -> next = prev;
-//     reverseRecursion(head,curr,forward);
+//     Node* val = advanceRecursion(head -> next);
+//     head -> next -> next = head;
+//     head -> next = NULL;
+//     return val;
 // }

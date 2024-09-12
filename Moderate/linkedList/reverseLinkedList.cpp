@@ -61,20 +61,52 @@ void reverseRecursion(Node* &head,Node* prev,Node* &curr,Node* &forward){
     reverseRecursion(head,prev,curr,forward);
 }
 
-int main(){
-    Node* node1 = new Node(1);
-    Node* head = node1;
+void advanceRecursion(Node* &head){
+    if(head == NULL || head -> next == NULL){
+        return;
+    }
+    Node* temp = head -> next;
+    advanceRecursion(temp);
+    head -> next -> next = head;
+    head -> next = NULL;
+    head = temp;// How the fuck is this working
+    cout<<head->data<<" ";
+}
 
+// void advanceRecursion2(Node* &head){// by babbar
+//     if(head == NULL || head -> next == NULL){
+//         return;
+//     }
+//     Node* val = advanceRecursion(head -> next);
+//     head -> next -> next = head;
+//     head -> next = NULL;
+//     return val;
+// }
+
+int main(){
+    // Declaring first node
+    Node* node1 = new Node(1);
+    Node* head = node1;// Head pointing to node1
+
+    //creating and insertind data in linke lsit from 2 to 5
     for(int i=2; i<=5; i++){
         insert(head, i);
     }
+    cout<<"Linked-List : ";
     print(head);
-    // reverse(head);
 
-    Node* prev = NULL;
-    Node* curr = head;
-    Node* forward = NULL;
-    reverseRecursion(head,prev,curr,forward);
-    print(head);
+    // cout<<"Reverse Linked-List : ";
+    // reverse(head);
+    // print(head);
+
+    // cout<<"Again Reverse using recursion : ";
+    // Node* prev = NULL;
+    // Node* curr = head;
+    // Node* forward = NULL;
+    // reverseRecursion(head,prev,curr,forward);
+    // print(head);
+
+    advanceRecursion(head);
+    // print(head);
     return 0;
 }
