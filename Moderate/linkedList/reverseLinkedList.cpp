@@ -70,7 +70,6 @@ void advanceRecursion(Node* &head){
     head -> next -> next = head;
     head -> next = NULL;
     head = temp;// How the fuck is this working
-    cout<<head->data<<" ";
 }
 
 // void advanceRecursion2(Node* &head){// by babbar
@@ -95,18 +94,19 @@ int main(){
     cout<<"Linked-List : ";
     print(head);
 
-    // cout<<"Reverse Linked-List : ";
-    // reverse(head);
-    // print(head);
+    cout<<"Reverse Linked-List : ";
+    reverse(head);
+    print(head);
 
-    // cout<<"Again Reverse using recursion : ";
-    // Node* prev = NULL;
-    // Node* curr = head;
-    // Node* forward = NULL;
-    // reverseRecursion(head,prev,curr,forward);
-    // print(head);
+    cout<<"Again Reverse using recursion : ";
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* forward = NULL;
+    reverseRecursion(head,prev,curr,forward);
+    print(head);
 
+    cout<<"Again Reverse using gud-recursion : ";
     advanceRecursion(head);
-    // print(head);
+    print(head);
     return 0;
 }
