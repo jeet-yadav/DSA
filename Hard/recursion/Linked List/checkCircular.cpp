@@ -18,13 +18,13 @@ class Node{
     }
 };
 
-void insert(Node* &head, int d){
+void insertNormal(Node* &head, int d){
     Node* temp = new Node(d);
     temp -> next = head;
     head = temp;
 }
 
-void insertNode(Node* &tail, int element, int d){
+void insertCircular(Node* &tail, int element, int d){
     //if list is empty
     if(tail == NULL){
         Node* temp = new Node(d);
@@ -49,6 +49,22 @@ void print(Node* &head){
         cout<<temp -> data<<" ";
         temp = temp -> next;
     }
+    cout<<endl;
+}
+
+void printCircular(Node* tail){
+    Node* temp = tail;
+    
+    if(tail == NULL){
+        cout<<"Empty List"<<endl;
+    }
+
+    //Do while is best for situation like this, Used it first time W_W
+    do {
+        cout<<tail -> data<<" ";
+        tail = tail -> next;
+    } while(tail != temp);
+
     cout<<endl;
 }
 
@@ -88,17 +104,23 @@ void checkCircular2(Node* &head){
 }
 
 int main(){
-    // Declaring first node
     Node* node1 = new Node(10);
-    Node* head = node1;// Head pointing to node1
-
-    //creating and insertind data in linke lsit from 2 to 5
+    Node* head = node1;
     for(int i=9; i>0; i--){
-        insert(head, i);
+        insertNormal(head, i);// Inserting in Normal List
     }
+
+    Node* tail = NULL;
+    insertCircular(tail,0,1);
+    insertCircular(tail,1,2);
+    insertCircular(tail,2,3);
+
     cout<<"Linked-List : ";
     print(head);
-
     checkCircular2(head);
+
+    cout<<"Circular Linked-List : ";
+    printCircular(tail);
+    checkCircular(tail);
     return 0;
 }
