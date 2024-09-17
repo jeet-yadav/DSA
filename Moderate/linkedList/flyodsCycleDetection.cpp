@@ -27,8 +27,8 @@ void print(Node* &head){
     cout<<endl;
 }
 
-// Floyd’s Cycle Detection Algorithm
-Node* detectLoop(Node* head){
+// Floyd’s Cycle Detection Algorithm, by me
+Node* floydDetectLoop1(Node* head){
     if(head == NULL)
         return NULL;
 
@@ -46,7 +46,7 @@ Node* detectLoop(Node* head){
 }
 
 // Function to detect if there is a loop using Floyd's cycle detection algorithm
-Node* floydDetectLoop(Node* head) {
+Node* floydDetectLoop2(Node* head) {
     if(head == NULL)
         return NULL;
 
@@ -76,7 +76,7 @@ int main(){
     }
     print(head);
 
-    Node* loopNode = detectLoop(head);
+    Node* loopNode = floydDetectLoop1(head);
     if(loopNode != NULL) {
         cout<<"Loop detected at node with data: "<<loopNode->data<<endl;
     } else {
