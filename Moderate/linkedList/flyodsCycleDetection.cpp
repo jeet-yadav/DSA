@@ -66,38 +66,39 @@ void printCircular(Node* tail){
 
     cout<<endl;
 }
-
-void checkCircular(Node* &head){
-    if(head == head -> next){
-        cout<<"Circular List"<<endl;
-        return;
+void printC(Node* tail){
+    Node* temp = tail;
+    
+    if(tail == NULL){
+        cout<<"Empty List"<<endl;
     }
 
-    Node* temp = head -> next;
-    while(temp != NULL){
-        if(temp == head){
-            cout<<"Circular List"<<endl;
-            return;
-        }
-        temp = temp -> next;
-    }
-    cout<<"Non-Circular List"<<endl;
+    //Do while is best for situation like this, Used it first time W_W
+    do {
+        cout<<tail -> data<<" ";
+        tail = tail -> next;
+    } while(tail != temp);
+
+    cout<<endl;
 }
 
-bool detectLoop(Node* head){//brute force
+// Floyd’s Cycle Detection Algorithm
+bool detectLoop(Node* head){
     if(head == NULL){
         return false;
     }
-    map<Node*, bool> visited;
-    Node* temp = head;
-    while(temp != NULL){
-        if(visited[temp] == true){
+
+    Node* slow = head;
+    Node* fast = head;
+    
+    while(fast != NULL || fast -> next != NULL){
+        if(slow == fast ){
             return true;
         }
-        visited[temp] = true;
-        temp = temp -> next;
+        slow = slow -> next;
+        fast = fast -> next -> next;
     }
-    return false; 
+    return false;
 }
 
 int main(){
@@ -114,9 +115,10 @@ int main(){
     insertCircular(tail,0,1);
     insertCircular(tail,1,2);
     insertCircular(tail,2,3);
+    insertCircular(tail,3,4);
 
-    cout<<"Linked-List : ";
-    print(head);
+    cout<<"Circular Linked-List : ";
+    printC(tail);
 
     // Currently checking for circular list, update tail to head il line below to check for normal list
     if(detectLoop(tail)){
