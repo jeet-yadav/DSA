@@ -66,32 +66,17 @@ void printCircular(Node* tail){
 
     cout<<endl;
 }
-void printC(Node* tail){
-    Node* temp = tail;
-    
-    if(tail == NULL){
-        cout<<"Empty List"<<endl;
-    }
 
-    //Do while is best for situation like this, Used it first time W_W
-    do {
-        cout<<tail -> data<<" ";
-        tail = tail -> next;
-    } while(tail != temp);
-
-    cout<<endl;
-}
-
-// BAD PROGRAM
-bool whereLoopStarts1(Node* head){
+// Function to detect if there is a loop using Floyd's cycle detection algorithm
+Node* whereLoopStarts1(Node* head){
     if(head == NULL){
-        return false;
+        return NULL;
     }
 
     Node* slow = head;
     Node* fast = head;
-    
-    while(fast != NULL || fast -> next != NULL){
+    Node* noLoop;
+    while(fast != NULL && fast -> next != NULL){
 
         slow = slow -> next;
         fast = fast -> next -> next;
@@ -104,47 +89,47 @@ bool whereLoopStarts1(Node* head){
                 slow = slow -> next;
                 fast = fast -> next;
             }
-
-            cout<<"Loop starts at : "<<slow -> data<<endl;
-            return true;
+            return slow;
         }
     }
-    return false;
+    return NULL;
 }
 
 // Floyd’s Cycle Detection Algorithm
-bool detectLoop(Node* head){
+Node* floydDetectLoop(Node* head){
     if(head == NULL){
-        return false;
+        return NULL;
     }
 
     Node* slow = head;
     Node* fast = head;
     
-    while(fast != NULL || fast -> next != NULL){
+    while(fast != NULL && fast -> next != NULL){
         slow = slow -> next;
         fast = fast -> next -> next;
         if(slow == fast ){
-            return true;
+            return slow;
         }
     }
-    return false;
+    return NULL;
 }
 
-// void whereLoopStarts(Node* head){ babbar solution
-//     if(head == NULL)
-//         return;
+Node* whereLoopStarts2(Node* head){// Babbar solution
+    if(head == NULL)
+        return NULL;
 
-//     Node* intersection = detectLoop(head);
-//     Node* slow = head;
+    Node* intersection = floydDetectLoop(head);
+    if(intersection == NULL)
+        return NULL;
 
-//     while(slow != intersection){
-//         slow = slow -> next;
-//         intersection = intersection -> next;
-//     }
-//     cout<<"Loop starts at : "<<slow -> data<<endl;
-//     return;
-// }
+    Node* slow = head;
+
+    while(slow != intersection){
+        slow = slow -> next;
+        intersection = intersection -> next;
+    }
+    return slow;
+}
 
 int main(){
     Node* node1 = new Node(10);
@@ -156,6 +141,7 @@ int main(){
     cout<<"Linked-List : ";
     print(head);
     
+    Node* head2 = node1;
     Node* tail = NULL;
     insertCircular(tail,0,1);
     insertCircular(tail,1,2);
@@ -163,15 +149,20 @@ int main(){
     insertCircular(tail,3,4);
 
     cout<<"Circular Linked-List : ";
-    printC(tail);
+    printCircular(tail);
 
-    // Currently checking for circular list, update tail to head il line below to check for normal list
-    if(detectLoop(tail)){
-        cout<<"Loop Found"<<endl;
+    Node* loop = whereLoopStarts2(head);
+    if(loop != NULL) {
+        cout<<"Loop detected at node with data: "<<loop->data<<endl;
+    } else {
+        cout<<"No loop detected"<<endl;
     }
-    else{
-        cout<<"Loop Not Found"<<endl;
+
+    Node* loop = whereLoopStarts2(tail);
+    if(loop != NULL) {
+        cout<<"Loop detected at node with data: "<<loop->data<<endl;
+    } else {
+        cout<<"No loop detected"<<endl;
     }
-    whereLoopStarts1(tail);
     return 0;
 }

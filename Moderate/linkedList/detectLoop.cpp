@@ -90,11 +90,14 @@ bool detectLoop(Node* head){//brute force
     }
     map<Node*, bool> visited;
     Node* temp = head;
+    Node* prev;
     while(temp != NULL){
         if(visited[temp] == true){
+            prev -> next = NULL;
             return true;
         }
         visited[temp] = true;
+        prev = temp;
         temp = temp -> next;
     }
     return false; 
@@ -116,9 +119,17 @@ int main(){
     insertCircular(tail,2,3);
 
     cout<<"Linked-List : ";
-    print(head);
+    printCircular(tail);
 
     // Currently checking for circular list, update tail to head il line below to check for normal list
+    if(detectLoop(tail)){
+        cout<<"Loop Found"<<endl;
+    }
+    else{
+        cout<<"Loop Not Found"<<endl;
+    }
+
+    //This will show not found despite being same line as above, because we have update last node to null in line 96
     if(detectLoop(tail)){
         cout<<"Loop Found"<<endl;
     }
