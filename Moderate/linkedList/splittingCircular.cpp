@@ -56,8 +56,41 @@ void print(Node* tail){
 
     cout<<endl;
 }
+int length(Node* tail){
+    if(tail == NULL){
+        return 0;
+    }
+    Node* temp = tail -> next;
+    int count = 1;
+    
+    while(temp != tail){
+        temp = temp -> next;
+        count++;
+    }
+    return count;
+}
+Node* split(Node* head, Node* tail){
+    int len = length(tail);
+
+    Node* temp = head;
+    int i=0;
+    while(i < (len/2)-1){
+        temp = temp -> next;
+        i++;
+    }
+    Node* head2 = temp -> next;
+    Node* temp2 = temp -> next;
+    temp -> next = head;
+
+    while(temp2 != tail){
+        temp2 = temp2 -> next;
+    }
+    tail -> next = head2;
+    return head2;
+}
 int main(){
     Node* node1 = new Node(1);
+    Node* head = node1;
     Node* tail = node1;
     tail->next = node1;
 
@@ -66,6 +99,11 @@ int main(){
     }
 
     print(tail);
-    cout<<tail -> data<< endl;
+    cout<<"tail is "<< tail -> data<< endl;
+    cout<<"length is "<<length(tail)<<endl;
+
+    Node* head2 = split(head, tail);
+    print(head);
+    print(head2);
     return 0;
 }
