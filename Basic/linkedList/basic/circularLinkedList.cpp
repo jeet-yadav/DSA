@@ -32,12 +32,20 @@ void insertNode(Node* &tail, int element, int d){
     else{
         Node* curr = tail;
 
+        // Find the node with the given element
         while(curr->data != element){
             curr = curr -> next;
         }
+
+        // Insert new node after the element
         Node* temp = new Node(d);
         temp -> next = curr -> next;
         curr -> next = temp;
+
+        // Update tail if we're inserting after the current tail
+        if (curr == tail) {
+            tail = temp;
+        }
     }
 }
 
@@ -78,6 +86,7 @@ void print(Node* tail){
     
     if(tail == NULL){
         cout<<"Empty List"<<endl;
+        return;
     }
 
     //Do while is best for situation like this, Used it first time W_W
