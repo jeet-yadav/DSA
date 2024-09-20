@@ -69,25 +69,6 @@ int length(Node* tail){
     }
     return count;
 }
-Node* split(Node* head, Node* tail){
-    int len = length(tail);
-
-    Node* temp = head;
-    int i=0;
-    while(i < (len/2)-1){
-        temp = temp -> next;
-        i++;
-    }
-    Node* head2 = temp -> next;
-    Node* temp2 = temp -> next;
-    temp -> next = head;
-
-    while(temp2 != tail){
-        temp2 = temp2 -> next;
-    }
-    tail -> next = head2;
-    return head2;
-}
 Node* split2(Node* head, Node* &tail){
     int len = length(tail);
 
@@ -102,9 +83,9 @@ Node* split2(Node* head, Node* &tail){
     tail = temp;
     temp -> next = head;
     
-    Node* temp2 = temp -> next;
+    Node* temp2 = head2;
 
-    while(temp2 != tail){
+    while(temp2 != tail2){
         temp2 = temp2 -> next;
     }
     tail2 -> next = head2;
