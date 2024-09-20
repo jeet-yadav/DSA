@@ -88,6 +88,28 @@ Node* split(Node* head, Node* tail){
     tail -> next = head2;
     return head2;
 }
+Node* split2(Node* head, Node* &tail){
+    int len = length(tail);
+
+    Node* temp = head;
+    int i=0;
+    while(i < (len/2)-1){
+        temp = temp -> next;
+        i++;
+    }
+    Node* head2 = temp -> next;
+    Node* tail2 = tail;
+    tail = temp;
+    temp -> next = head;
+    
+    Node* temp2 = temp -> next;
+
+    while(temp2 != tail){
+        temp2 = temp2 -> next;
+    }
+    tail2 -> next = head2;
+    return tail2;
+}
 int main(){
     Node* node1 = new Node(1);
     Node* head = node1;
@@ -102,8 +124,8 @@ int main(){
     cout<<"tail is "<< tail -> data<< endl;
     cout<<"length is "<<length(tail)<<endl;
 
-    Node* head2 = split(head, tail);
-    print(head);
-    print(head2);
+    Node* tail2 = split2(head, tail);
+    print(tail);
+    print(tail2);
     return 0;
 }
