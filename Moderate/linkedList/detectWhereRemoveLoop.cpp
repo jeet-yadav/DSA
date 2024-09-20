@@ -131,6 +131,18 @@ Node* whereLoopStarts2(Node* head){// Babbar solution
     return slow;
 }
 
+void removeLoop(Node* head){
+    if(head == NULL)
+        return;
+    Node* startOfLoop = whereLoopStarts2(head);
+    Node* temp = startOfLoop;
+    while(temp -> next != startOfLoop){
+        temp = temp -> next;
+    }
+    temp -> next = NULL;
+    cout<<"Loop removed"<<endl;
+}
+
 int main(){
     Node* node1 = new Node(10);
     Node* head = node1;
@@ -151,16 +163,24 @@ int main(){
     cout<<"Circular Linked-List : ";
     printCircular(tail);
 
-    Node* loop = whereLoopStarts2(head);
-    if(loop != NULL) {
-        cout<<"Loop detected at node with data: "<<loop->data<<endl;
+    Node* loop1 = whereLoopStarts2(head);
+    if(loop1 != NULL) {
+        cout<<"Loop detected at node with data: "<<loop1->data<<endl;
     } else {
         cout<<"No loop detected"<<endl;
     }
 
-    Node* loop = whereLoopStarts2(tail);
-    if(loop != NULL) {
-        cout<<"Loop detected at node with data: "<<loop->data<<endl;
+    Node* loop2 = whereLoopStarts2(tail);
+    if(loop2 != NULL) {
+        cout<<"Loop detected at node with data: "<<loop2->data<<endl;
+    } else {
+        cout<<"No loop detected"<<endl;
+    }
+
+    removeLoop(tail);
+    Node* loop3 = whereLoopStarts2(tail);
+    if(loop3 != NULL) {
+        cout<<"Loop detected at node with data: "<<loop3->data<<endl;
     } else {
         cout<<"No loop detected"<<endl;
     }
