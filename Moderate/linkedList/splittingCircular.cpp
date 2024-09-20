@@ -70,18 +70,23 @@ int length(Node* tail){
     return count;
 }
 Node* split2(Node* head, Node* &tail){
-    int len = length(tail);
+    if (head == NULL || tail == NULL) {
+        return NULL; // Handle empty list case
+    }
 
+    int len = length(tail);
     Node* temp = head;
+
+    // Find the midpoint of the circular list
     int i=0;
     while(i < (len/2)-1){
         temp = temp -> next;
         i++;
     }
-    Node* head2 = temp -> next;
-    Node* tail2 = tail;
-    tail = temp;
-    temp -> next = head;
+    Node* head2 = temp -> next;// This is the head of the second half.
+    Node* tail2 = tail;// This is the tail of the second half.
+    tail = temp;// Update the original tail to be the last node of the first half.
+    temp -> next = head;// Close the first half, making it circular by pointing the new tail back to `head`.
     
     Node* temp2 = head2;
 
