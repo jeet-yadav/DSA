@@ -39,22 +39,21 @@ void countSort(Node* &head){
         }
         temp = temp -> next;
     }
-    Node* temp2 = head;
 
-    while(count0 > 0){
-        temp2 -> data = 0;
-        count0--;
-        temp2 = temp2 -> next;
-    }
-    while(count1 > 0){
-        temp2 -> data = 1;
-        count1--;
-        temp2 = temp2 -> next;
-    }
-    while(count2 > 0){
-        temp2 -> data = 2;
-        count2--;
-        temp2 = temp2 -> next;
+    temp = head;
+    while(temp != NULL){
+        if(count0 != 0){
+            temp -> data = 0;
+            count0--;
+        }
+        else if(count1 != 0){
+            temp -> data = 1;
+            count1--;
+        }
+        else{
+            temp -> data = 2;
+        }
+        temp = temp -> next;
     }
 }
 
