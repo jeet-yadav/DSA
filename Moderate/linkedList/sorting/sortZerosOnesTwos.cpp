@@ -4,9 +4,18 @@ class Node{
     public:
     int data;
     Node* next;
+
+    //constructor
     Node(int d){
         data = d;
         next = NULL;
+    }
+
+    //destructor
+    ~Node(){
+        cout<<"Memory freed for: "<<this->data<<endl;
+        // Do not recursively delete next node to avoid chain reaction
+        this->next = NULL;
     }
 };
 void insertHead(Node* &head, int d){
@@ -24,6 +33,7 @@ void print(Node* &head){
     }
     cout<<endl;
 }
+// Counting the number of 0's, 1's and 2's, and then putting them in the linked list
 void countSort(Node* &head){
     Node* temp = head;
     int count0 = 0,count1 = 0,count2 = 0;
@@ -57,6 +67,57 @@ void countSort(Node* &head){
     }
 }
 
+// Sorting without changing the data
+void insertTail(Node* &tail, Node* curr){
+    tail -> next = curr;
+    tail = curr;
+}
+
+void sort(Node* &head){
+    Node* zeroHead = new Node(-1);
+    Node* zeroTail = zeroHead;
+    Node* oneHead = new Node(-1);
+    Node* oneTail = oneHead;
+    Node* twoHead = new Node(-1);
+    Node* twoTail = twoHead;
+
+    Node* curr = head;
+    // Create seprate list for 0's, 1's and 2's
+    while(curr != NULL){
+        int value = curr -> data;
+        if(value == 0){
+            insertTail(zeroTail, curr);
+        }
+        else if(value == 1){
+            insertTail(oneTail, curr);
+        }
+        else if(value == 2){
+            insertTail(twoTail, curr);
+        }
+        curr = curr -> next;
+    }
+
+    // Merge the three lists
+
+    // If 1st list is not empty
+    if(oneHead -> next != NULL){
+        zeroTail -> next = oneHead -> next;
+    }
+    else{
+        // If 1st list is empty
+        zeroTail -> next = twoHead -> next;
+    }
+
+    oneTail -> next = twoHead -> next;
+    twoTail -> next = NULL;
+
+    // Update head to point to the new list's start
+    head = zeroHead -> next;
+    delete zeroHead;
+    delete oneHead;
+    delete twoHead;
+}
+
 int main(){
     Node* node1 = new Node(1);
     Node* head = node1;
@@ -69,7 +130,7 @@ int main(){
     insertHead(head,2);
     print(head);
 
-    countSort(head);
+    sort(head);
     print(head);
     return 0;
 }
