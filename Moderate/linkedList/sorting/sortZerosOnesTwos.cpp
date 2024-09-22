@@ -14,7 +14,6 @@ class Node{
     //destructor
     ~Node(){
         cout<<"Memory freed for: "<<this->data<<endl;
-        // Do not recursively delete next node to avoid chain reaction
         this->next = NULL;
     }
 };
