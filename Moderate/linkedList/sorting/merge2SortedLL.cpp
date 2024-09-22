@@ -32,7 +32,7 @@ void print(Node* &head){
     }
     cout<<endl;
 }
-void merge(Node* head1, Node* &head2){// My Solution
+void merge(Node* head1, Node* &head2){// My Solution, doesnt work for all lists T_T
     // if head1 is empty
     if(head1 == NULL){
         cout<<"List 1 is empty"<<endl;
@@ -57,12 +57,69 @@ void merge(Node* head1, Node* &head2){// My Solution
         }
         temp1 = temp1 -> next;
     }
+    // If temp1 reaches the end and temp2 still has nodes, append temp2 to the end
     if(temp1 == NULL && temp2 != NULL){
         temp1 = head1;
         while(temp1->next != NULL){ // Find the end of the list
             temp1 = temp1->next;
         }
         temp1->next = temp2;
+    }
+}
+
+// Merge two sorted linked lists
+Node* solve(Node* first, Node* second){
+    Node* curr1 = first;
+    Node* next1 = curr1 -> next;
+    Node* curr2 = second;
+    Node* next2 = curr2 -> next;
+
+    // Traverse both lists
+    while(next1 != NULL && curr2 != NULL){
+        // If curr2 fits between curr1 and next1
+        if((curr1 -> data <= curr2 -> data) && (curr2 -> data <= next1 -> data)){
+            // Insert curr2 between curr1 and next1
+            curr1 -> next = curr2;  // Link curr1 to curr2
+            next2 = curr2 -> next;  // Store the next node of curr2 (to move forward later)
+            curr2 -> next = next1;  // Link curr2 to next1
+
+            // Move curr1 and curr2 forward
+            curr1 = curr2;  // curr1 is now at curr2's position
+            curr2 = next2;  // curr2 moves to the next node in second list
+        }   
+        else{
+            // Move curr1 and next1 one step forward in the first list
+            curr1 = next1;
+            next1 = next1 -> next;
+
+            // If we reach the end of the first list (next1 becomes NULL)
+            // Append the rest of the second list (curr2 and beyond) to the first list
+            if(next1 == NULL){
+                curr1 -> next = curr2;
+            }
+        }
+    }
+    return first;// Return the head of the merged list
+}
+void merge2(Node* first, Node* second){
+    // if head1 is empty
+    if(first == NULL){
+        cout<<"List 1 is empty"<<endl;
+        return;
+    }
+    // if head2 is empty
+    if(second == NULL){
+        cout<<"List 2 is empty"<<endl;
+        return;
+    }
+    // Depending on the data at the head, start merging from the appropriate list
+    // If the head of the first list is smaller or equal, call solve with first as the main list
+    if(first -> data <= second -> data){
+        solve(first, second);
+    }
+    else{
+        // Otherwise, call solve with second as the main list
+        solve(second, first);
     }
 }
 
@@ -83,7 +140,7 @@ int main(){
 
     print(head1);
     print(head2); 
-    merge(head1, head2);
+    merge2(head1, head2);
     print(head1);
     return 0;
 }
