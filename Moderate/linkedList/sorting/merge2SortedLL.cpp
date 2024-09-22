@@ -69,6 +69,13 @@ void merge(Node* head1, Node* &head2){// My Solution, doesnt work for all lists 
 
 // Merge two sorted linked lists
 Node* solve(Node* first, Node* second){
+
+    // If only one element is in the first list
+    if(first -> next == NULL){
+        first -> next = second;
+        return first;
+    }
+    
     Node* curr1 = first;
     Node* next1 = curr1 -> next;
     Node* curr2 = second;
@@ -101,25 +108,25 @@ Node* solve(Node* first, Node* second){
     }
     return first;// Return the head of the merged list
 }
-void merge2(Node* first, Node* second){
+Node* merge2(Node* first, Node* second){
     // if head1 is empty
     if(first == NULL){
         cout<<"List 1 is empty"<<endl;
-        return;
+        return second;
     }
     // if head2 is empty
     if(second == NULL){
         cout<<"List 2 is empty"<<endl;
-        return;
+        return first;
     }
     // Depending on the data at the head, start merging from the appropriate list
     // If the head of the first list is smaller or equal, call solve with first as the main list
     if(first -> data <= second -> data){
-        solve(first, second);
+        return solve(first, second);
     }
     else{
         // Otherwise, call solve with second as the main list
-        solve(second, first);
+        return solve(second, first);
     }
 }
 
