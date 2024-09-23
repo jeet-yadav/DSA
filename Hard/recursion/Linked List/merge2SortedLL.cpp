@@ -97,7 +97,7 @@ Node* solve(Node* first, Node* second){
         else{
             // Move curr1 and next1 one step forward in the first list
             curr1 = next1;
-            next1 = next1 -> next;
+            next1 = next1 -> next; 
 
             // If we reach the end of the first list (next1 becomes NULL)
             // Append the rest of the second list (curr2 and beyond) to the first list
