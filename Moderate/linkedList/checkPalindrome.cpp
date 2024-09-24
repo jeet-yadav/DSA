@@ -75,7 +75,7 @@ void Reverse(Node* &head){
     head -> next = NULL;
     head = temp;
 }
-void palindrome2(Node* head){// Another Solution, O(n) + O(n) = O(n
+void palindrome2(Node* head){
     if(head == NULL || head -> next == NULL){
         cout<<"Palindrome"<<endl;
         return;
