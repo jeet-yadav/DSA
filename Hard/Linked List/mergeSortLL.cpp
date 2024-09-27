@@ -114,7 +114,7 @@ int main(){
     }
     print(head); 
 
-    Node* newHead = mergeSort(head);
+    Node* newHead = mergeSort(head);// Complexity O(nlogn)
     print(newHead);
     return 0;
 }
