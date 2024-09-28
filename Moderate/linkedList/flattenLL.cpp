@@ -55,7 +55,7 @@ void print(Node* head){
     while(head != NULL){
         cout<<head -> data<<" ";
 
-        if(head->child != NULL) {
+        if(head->child != NULL){
             cout << "[Child: ";
             printChild(head->child);
             cout << "] ";
@@ -72,14 +72,15 @@ void flatten(Node* head){
     while(curr != NULL){
         if(curr -> child != NULL){
             Node* nextNode = curr -> next;
+
             curr -> next = curr -> child;
-            curr->child = NULL;
+            curr -> child = NULL;
 
             Node* temp = curr -> next;
-            while(temp -> next != NULL){
+            while(temp->next != NULL){
                 temp = temp -> next;
             }
-
+            
             temp -> next = nextNode;
         }
         curr = curr -> next;
