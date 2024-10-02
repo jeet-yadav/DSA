@@ -18,7 +18,7 @@ class Stack{
     void push(int data){
         if(size - top > 1){
             top++;
-            arr[top] = data;
+            arr[top] = data; 
         }
         else{
             cout<<"Stack Overflow"<<endl;
