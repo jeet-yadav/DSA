@@ -4,10 +4,8 @@
 using namespace std;
 
 bool knows(vector<vector<int>> arr, int a, int b, int n){
-    for(int i=0; i<n; i++){
-        if(arr[a][i] == 1){
-            return true;
-        }
+    if(arr[a][b]){
+        return true;
     }
     return false;
 }
