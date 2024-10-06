@@ -3,26 +3,19 @@
 #include<vector>
 using namespace std;
 
-bool knows(vector<vector<int>> arr, int a, int b, int n){
-    if(arr[a][b]){
-        return true;
-    }
-    return false;
-}
-
 void find(vector<vector<int>> arr, int n){
     stack<int> s;
     for(int i=0; i<n; i++){
         s.push(i);
     }
-    while(s.size() == 1){
+    while(s.size() > 1){
         int a = s.top();
         s.pop();
 
         int b = s.top();
         s.pop();
 
-        if(knows(arr,a,b,n)){
+        if(arr[a][b]){
             s.push(b);
         }
         else{
@@ -73,7 +66,7 @@ int main(){
             }
         }
         if(flag){
-            cout<<"Celebrity is person : "<<col+1<<endl;
+            cout<<"Celebrity is person : "<<col<<endl;
             break;
         }
     }
