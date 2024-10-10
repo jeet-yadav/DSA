@@ -3,6 +3,7 @@
 #include<vector>
 using namespace std;
 
+//https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbWl0djlCMVlHNWFJTVlnanRjRGhjUHoxOEt1Z3xBQ3Jtc0trOHl0MXNtSTFrQXpYalBTdTlnMGU2a0c2ZFI2WGdxaU1jU095UTZRdFJfY3dxdldYVG1kdW1FQnNxOWhSN0V3OXIwczc1bUhWLXFuaHUyTW02OGxtVmRPdDVEbWtFS0VZdm16eExrUkc1Qm9hZGZEWQ&q=https%3A%2F%2Fpractice.geeksforgeeks.org%2Fproblems%2Fthe-celebrity-problem%2F1%2F&v=9u2BJfmWNEg
 void find(vector<vector<int>> arr, int n){
     stack<int> s;
 
