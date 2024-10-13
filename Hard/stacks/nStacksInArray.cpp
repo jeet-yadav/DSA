@@ -2,6 +2,8 @@
 #include<stack>
 using namespace std;
 
+//https://www.naukri.com/code360/problems/n-stacks-in-an-array_1164271
+
 class NStack{
     int *arr;       // Array to store the actual stack elements
     int *top;       // Array to store the top index of each stack
