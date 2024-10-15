@@ -13,11 +13,15 @@ public:
     Queue(){
         size = 100;
         arr = new int[size];
-        rear = 0;
+        front = 0;
         rear = 0;
     }
+
     bool isEmpty(){
-        front == rear ? true : false;
+        if(front == rear){
+            return true;
+        }
+        return false;
     }
     void enqueue(int data){
         if(rear == size){
@@ -38,7 +42,7 @@ public:
         }
         return ans;
     }
-    int frontEl(){
+    int getFront(){
         if(front == rear) {return -1;}
         return arr[front];
     }
