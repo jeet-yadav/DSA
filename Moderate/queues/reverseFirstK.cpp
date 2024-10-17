@@ -3,7 +3,7 @@
 #include<stack>
 using namespace std;
 
-//https://www.geeksforgeeks.org/problems/queue-reversal/1
+//https://www.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1
 
 int main(){
     deque<int> q;
