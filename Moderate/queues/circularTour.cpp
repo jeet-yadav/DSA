@@ -6,6 +6,8 @@ using namespace std;
 // FAMOUS QUESTION 
 //https://www.geeksforgeeks.org/problems/circular-tour-1587115620/1
 
+//https://www.youtube.com/watch?v=_gJ3to4RyeQ&list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA&index=66
+
 int tour(int petrol[], int distance[], int n){
     int deficit = 0;// Tracks the total deficit when the truck can't move forward
     int balance = 0;// Tracks the current fuel balance at each step
