@@ -5,22 +5,47 @@ using namespace std;
 
 int main(){
     queue<int> q;
-    for(int i=1; i<=4; i++){
+    for(int i=11; i<=18; i++){
         q.push(i);
     }
+    
+    int mid = q.size()/2;
 
-    queue<int> q2;
-    for(int i=0; i<q.size()/2; i++){
-        q2.push(q.front());
+    // put first halve in stack
+    stack<int> s;
+    for(int i=0; i<mid; i++){
+        s.push(q.front());
         q.pop();
     }
 
-    while(!q2.empty()){
-        q.push(q2.front());
-        q2.pop();
-        
+    // put first halve of stack again in queue
+    while(!s.empty()){
+        q.push(s.top());
+        s.pop();
+    }
+
+    // rotate the queue till mid
+    for(int i=0; i<mid; i++){
         q.push(q.front());
         q.pop();
+    }
+
+    // put second halve in stack
+    stack<int> s2;
+    for(int i=0; i<mid; i++){
+        s2.push(q.front());
+        q.pop();
+    }
+
+    // put second halve of stack again in queue
+    while(!s2.empty()){
+        int val = s2.top();
+        s2.pop();
+        q.push(val);
+
+        val = q.front();
+        q.pop();
+        q.push(val);
     }
 
     // Print the interleaved queue
