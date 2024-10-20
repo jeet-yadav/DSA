@@ -68,7 +68,6 @@ vector<int> printFirstNegativeInteger(vector<int> a, int n, int k){
         }
 
         // Step 4: Store the result for the current window
-        // Store the result for the current window
         if(dq.size() > 0){
             ans.push_back(a[dq.front()]);// First negative number
         }
