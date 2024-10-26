@@ -34,6 +34,7 @@ node* buildTree(node* root){
 
 // breadth first search
 void levelOrderTraversal(node* root){
+    // Step 1 : Create an empty queue ans push root and NULL in it
     queue<node*> q;
     q.push(root);
     q.push(NULL);
@@ -54,16 +55,54 @@ void levelOrderTraversal(node* root){
                 q.push(temp->left);
             }
             if(temp->right){
-                q.push(temp->right); 
+                q.push(temp->right);
             }
         }
     }
+}
+
+void preOrderTraversal(node* root){
+    if(root == NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preOrderTraversal(root->left);
+    preOrderTraversal(root->right);
+}
+
+void inOrderTraversal(node* root){
+    if(root == NULL){
+        return;
+    }
+    inOrderTraversal(root->left);
+    cout<<root->data<<" ";
+    inOrderTraversal(root->right);
+}
+
+
+void postOrderTraversal(node* root){
+    if(root == NULL){
+        return;
+    }
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
+    cout<<root->data<<" ";
 }
 
 int main(){
     node* root = NULL;
     root = buildTree(root);
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-    levelOrderTraversal(root);
+    // 1 2 4 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 -1
+    cout<<"Preorder : ";
+    preOrderTraversal(root);
+    cout<<endl;
+
+    cout<<"Inorder : ";
+    inOrderTraversal(root);
+    cout<<endl;
+
+    cout<<"preorder : ";
+    postOrderTraversal(root);
     return 0;
 }
