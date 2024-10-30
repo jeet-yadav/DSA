@@ -84,7 +84,6 @@ void printTree(Node* root){
     }
 }
 
-// time complexity : O(n), space complexity : O(height)
 int height(Node* node){
     if(node == NULL){return 0;}
 
@@ -95,10 +94,21 @@ int height(Node* node){
     return ans;
 }
 
+// time complexity : O(n-square ), space complexity : O(height)
+int diameter(Node* node){
+    if(node == NULL){return 0;}
+
+    int op1 = diameter(node->left);
+    int op2 = diameter(node->right);
+    int op3 = height(node->left) + height(node->right) + 1;
+    
+    return max(op1,max(op2,op3));
+}
+ 
 int main(){
     Node* root = NULL;
     buildTree(root);
     printTree(root);
-    cout<<"Height : "<<height(root);
+    cout<<"Diameter : "<<diameter(root);
     return 0;
 }
